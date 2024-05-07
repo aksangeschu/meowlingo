@@ -1,6 +1,9 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:meowlingo/screens/home_screen2.dart'; // Import the CatSpeakScreen
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -13,14 +16,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
   String _convertedText = '';
+  String _userInput = '';
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +47,12 @@ class _HomePageState extends State<HomePage> {
                 context,
                 MaterialPageRoute(builder: (context) => CatSpeakScreen()),
               );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.volume_up),
+            onPressed: () async {
+              await _playRandomMeow();
             },
           ),
         ],
@@ -125,6 +138,7 @@ class _HomePageState extends State<HomePage> {
                         String convertedText = _convertToMeows(input);
                         setState(() {
                           _convertedText = convertedText;
+                          _userInput = input;
                         });
                       },
                       decoration: InputDecoration(
@@ -147,6 +161,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
   Widget _buildCatEar() {
     return SizedBox(
       width: 50,
@@ -157,9 +172,56 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
   String _convertToMeows(String input) {
     List<String> words = input.split(' ');
     return 'meow ' * words.length;
+  }
+
+  
+
+/*  Future<void> _playRandomMeow() async {
+    List<String> meowSounds = [
+      'meow1.m4a',
+      'meow2.m4a',
+      // Add more meow sound file paths here
+    ];
+
+
+    String selectedMeow = meowSounds[Random().nextInt(meowSounds.length)];
+
+    _audioPlayer.play(AssetSource('audio/$selectedMeow'));
+  }
+*/
+
+  Future<void> _playRandomMeow() async {
+    List<String> meowSounds = [
+      'meow1.m4a',
+      'meow2.m4a',
+      'meow3.m4a',
+      'meow4.m4a',
+      'meow5.m4a',
+      'meow6.m4a',
+      'meow7.m4a',
+      'meow8.m4a',
+      'meow9.m4a',
+      'meow10.m4a',
+      'meow11.m4a',
+      // Add more meow sound file paths here
+    ];
+
+    int meowCount = RegExp(r'\bmeow\b').allMatches(_convertedText).length;
+
+    List<String> words = _userInput.split(' ');
+    for (int i = 0; i < meowCount; i++) {
+      int meowIndex = words[i].hashCode % meowSounds.length;
+      String selectedMeow = meowSounds[meowIndex];
+      // String selectedMeow = meowSounds[Random().nextInt(meowSounds.length)];
+      await _audioPlayer.play(AssetSource('audio/$selectedMeow'));
+      await _audioPlayer.setReleaseMode(ReleaseMode.stop); // Ensures the player stops after playing
+      int duration = (await _audioPlayer.getDuration())!.inMilliseconds + 500;
+      await Future.delayed(Duration(milliseconds: duration)); // Wait for the sound to finish playing
+    }
   }
 }
 
