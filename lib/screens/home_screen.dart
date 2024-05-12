@@ -1,12 +1,12 @@
-import 'dart:math';
+//import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:meowlingo/screens/home_screen2.dart'; // Import the CatSpeakScreen
+//import 'package:meowlingo/screens/home_screen2.dart'; // Import the CatSpeakScreen
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CatSpeakScreen()),
+                MaterialPageRoute(builder: (context) => const HomePage()),
               );
             },
           ),
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               height: MediaQuery.of(context).size.height * 0.64,
               decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 227, 143, 87),
+                color: Color.fromARGB(255, 245, 165, 53),
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
               ),
               child: Column(
@@ -178,22 +178,6 @@ class _HomePageState extends State<HomePage> {
     return 'meow ' * words.length;
   }
 
-  
-
-/*  Future<void> _playRandomMeow() async {
-    List<String> meowSounds = [
-      'meow1.m4a',
-      'meow2.m4a',
-      // Add more meow sound file paths here
-    ];
-
-
-    String selectedMeow = meowSounds[Random().nextInt(meowSounds.length)];
-
-    _audioPlayer.play(AssetSource('audio/$selectedMeow'));
-  }
-*/
-
   Future<void> _playRandomMeow() async {
     List<String> meowSounds = [
       'meow1.m4a',
@@ -229,7 +213,7 @@ class _CatEarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = const Color.fromARGB(255, 227, 143, 87)
+      ..color = const Color.fromARGB(255, 245, 165, 53)
       ..style = PaintingStyle.fill;
 
     final double triangleHeight = size.height * 0.9;

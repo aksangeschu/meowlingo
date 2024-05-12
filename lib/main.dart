@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({Key? key}) : super(key: key);
+  const LoadingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class LoadingScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor:  const Color.fromARGB(255, 227, 143, 87),
+      backgroundColor:  const Color.fromARGB(255, 245, 165, 53),
       body: Center(
         child: Text(
           'MeowLingo',
           style: GoogleFonts.modak(
-            fontSize: 24,
+            fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: const Color.fromARGB(255, 255, 255, 255),
           ),
         ),
       ),

@@ -1,5 +1,5 @@
 name: meowlingo
-description: "A new Flutter project."
+description: "A Flutter project designed to act as a Cat Translator for entertainment purposes. Meowlingo is an app that is supposed to make people laugh. There is no accurate data."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -31,7 +31,6 @@ dependencies:
   flutter:
     sdk: flutter
   audioplayers: ^6.0.0
-  flutter_tts: ^4.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -49,6 +48,14 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: "AppIcon"
+  image_path: "assets/images/meowimg.PNG"
+  min_sdk_android: 21
+  remove_alpha_ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -92,3 +99,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  
